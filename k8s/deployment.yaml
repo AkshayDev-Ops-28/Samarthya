@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: samarthya-deployment
+  labels:
+    app: samarthya
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: samarthya
+  template:
+    metadata:
+      labels:
+        app: samarthya
+    spec:
+      containers:
+        - name: samarthya-container
+          image: akshaydevops28/samarthya-app:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: API_URL
+              value: "https://api.placeholder.com"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "250m"
+              memory: "128Mi"
